@@ -113,21 +113,48 @@ mod tests {
     }
 
     #[test]
-    fn growing() {
+    fn growing_left() {
         let mut s = Snake::new(Pos { x: 10, y: 11 }, Dir::Left);
-        s.max_len(3);
+
         assert_eq!(0, s.tail().len());
+        assert_eq!(s.pos().x, 10);
+        assert_eq!(s.pos().y, 11);
 
         s.step();
-        assert_eq!(1, s.tail().len());
+        s.step();
+        s.step();
+        s.step();
+        s.step();
+
+        assert_eq!(4, s.tail().len());
+        assert_eq!(s.pos().x,  5);
+        assert_eq!(s.pos().y, 11);
+        assert_eq!(s.tail()[0], Pos {x: 9, y: 11});
+        assert_eq!(s.tail()[1], Pos {x: 8, y: 11});
+        assert_eq!(s.tail()[2], Pos {x: 7, y: 11});
+        assert_eq!(s.tail()[3], Pos {x: 6, y: 11});
+    }
+
+    #[test]
+    fn growing_right() {
+        let mut s = Snake::new(Pos { x: 10, y: 11 }, Dir::Right);
+
+        assert_eq!(0, s.tail().len());
+        assert_eq!(s.pos().x, 10);
+        assert_eq!(s.pos().y, 11);
 
         s.step();
-        assert_eq!(2, s.tail().len());
-
         s.step();
-        assert_eq!(3, s.tail().len());
-
         s.step();
-        assert_eq!(3, s.tail().len());
+        s.step();
+        s.step();
+
+        assert_eq!(4, s.tail().len());
+        assert_eq!(s.pos().x, 15);
+        assert_eq!(s.pos().y, 11);
+        assert_eq!(s.tail()[0], Pos {x: 11, y: 11});
+        assert_eq!(s.tail()[1], Pos {x: 12, y: 11});
+        assert_eq!(s.tail()[2], Pos {x: 13, y: 11});
+        assert_eq!(s.tail()[3], Pos {x: 14, y: 11});
     }
 }

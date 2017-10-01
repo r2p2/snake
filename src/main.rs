@@ -1,10 +1,14 @@
 #![allow(dead_code)]
 #![allow(unused_variables)]
+#![allow(unused_imports)]
+
+extern crate rustty;
 
 mod snake;
+mod snake_tui;
 
 use snake::game::Game;
 
 fn main() {
-    let game = Game::new_game(50, 30);
+    snake_tui::ui::Ui::new(Game::new_game(50, 30)).run();
 }

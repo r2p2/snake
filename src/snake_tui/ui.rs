@@ -46,7 +46,7 @@ impl Ui {
                         'd' => self.game.right(),
                         'w' => self.game.up(),
                         's' => self.game.down(),
-                        _ => {}
+                        _ => { self.game.step(); }
                     }
                 } else {
                     self.game.step();

@@ -1,6 +1,6 @@
 
-use pos::Pos;
-use dir::Dir;
+use snake::pos::Pos;
+use snake::dir::Dir;
 
 pub struct Snake {
     pos: Pos,

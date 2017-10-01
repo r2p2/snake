@@ -1,6 +1,6 @@
-use snake::Snake;
-use dir::Dir;
-use pos::Pos;
+use snake::snake::Snake;
+use snake::dir::Dir;
+use snake::pos::Pos;
 
 pub struct Game {
     width: u32,

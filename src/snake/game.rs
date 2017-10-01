@@ -71,8 +71,8 @@ impl Game {
         while strawberries.len() < 1 {
             // TODO more than one strawberry
             let new_pos = Pos {
-                x: rng.gen_range(1, width - 1),
-                y: rng.gen_range(1, height - 1),
+                x: rng.gen_range(2, width - 1),
+                y: rng.gen_range(2, height - 1),
             };
 
             if snake.pos().x == new_pos.x && snake.pos().y == new_pos.y ||

@@ -87,9 +87,8 @@ impl Ui {
     fn draw_snake(canvas: &mut Widget, game: &Game) {
         let snake = game.snake();
         let head = snake.pos();
-        {
-            Self::draw(canvas, head.x as usize, head.y as usize, BLOCK);
-        }
+
+        Self::draw(canvas, head.x as usize, head.y as usize, BLOCK);
 
         for pos in snake.tail() {
             Self::draw(canvas, pos.x as usize, pos.y as usize, BLOCK);

@@ -33,10 +33,7 @@ impl Game {
 
     pub fn is_game_over(&self) -> bool {
         let head = self.snake.pos();
-        if head.x == 0 ||
-            head.y == 0 ||
-            head.x == self.width() - 1 ||
-            head.y == self.height() - 1 {
+        if head.x == 0 || head.y == 0 || head.x == self.width() - 1 || head.y == self.height() - 1 {
             panic!("x:{} y:{}", head.x, head.y);
             return true;
         }

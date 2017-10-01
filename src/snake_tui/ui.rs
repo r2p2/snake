@@ -35,7 +35,8 @@ impl Ui {
         'main: loop {
             let now = Instant::now();
 
-            if timeout > now { // TODO fix this mess
+            if timeout > now {
+                // TODO fix this mess
                 let timeout_diff = timeout - now;
                 let evt = self.term.get_event(timeout_diff).unwrap();
                 if let Some(Event::Key(ch)) = evt {
@@ -45,8 +46,7 @@ impl Ui {
                         'd' => self.game.right(),
                         'w' => self.game.up(),
                         's' => self.game.down(),
-                        _ => {
-                        }
+                        _ => {}
                     }
                 } else {
                     self.game.step();
@@ -101,8 +101,18 @@ impl Ui {
         let draw_y = rows - y;
         let mut opt_cell = canvas.get_mut(draw_x, draw_y);
         match opt_cell {
-            Some(ref mut cell) => { cell.set_ch(c); } ,
-            None => println!("error mapping x:{} y:{} to dx:{} dy:{}", x, y, draw_x, draw_y),
+            Some(ref mut cell) => {
+                cell.set_ch(c);
+            }
+            None => {
+                println!(
+                    "error mapping x:{} y:{} to dx:{} dy:{}",
+                    x,
+                    y,
+                    draw_x,
+                    draw_y
+                )
+            }
         };
     }
 }

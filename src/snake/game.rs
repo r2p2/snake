@@ -36,14 +36,15 @@ impl Game {
     }
 
     pub fn down(&mut self) {
-        self.snake.up()
+        self.snake.down()
     }
 
     pub fn left(&mut self) {
-        self.snake.up()
+        self.snake.left()
     }
 
     pub fn right(&mut self) {
-        self.snake.up()
+        self.snake.right()
+    }
     }
 }

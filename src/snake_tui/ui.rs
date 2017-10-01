@@ -5,7 +5,6 @@ use snake::game::Game;
 use rustty::{Terminal, Event, HasSize, CellAccessor};
 use rustty::ui::{Painter, Dialog, Widget, Alignable, HorizontalAlign, VerticalAlign};
 
-//const BLOCK: char = '\u{25AA}';
 const BLOCK: char = '\u{2588}';
 const STRAWBERRY: char = '\u{1F353}';
 

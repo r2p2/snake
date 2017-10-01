@@ -21,8 +21,8 @@ impl Snake {
         }
     }
 
-    pub fn max_len(&mut self, max_len: usize) {
-        self.max_len = max_len
+    pub fn grow(&mut self, amount: usize) {
+        self.max_len += amount
     }
 
     pub fn up(&mut self) {

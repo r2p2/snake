@@ -43,7 +43,7 @@ impl Game {
         Self::check_strawberries(
             self.width(),
             self.height(),
-            &self.snake,
+            &mut self.snake,
             &mut self.strawberries,
             &mut self.points,
             &mut self.rng,
@@ -54,7 +54,7 @@ impl Game {
     fn check_strawberries(
         width: u32,
         height: u32,
-        snake: &Snake,
+        snake: &mut Snake,
         strawberries: &mut Strawberries,
         points: &mut u32,
         rng: &mut ThreadRng,
@@ -64,6 +64,7 @@ impl Game {
             Some(index) => {
                 strawberries.remove(index);
                 *points += 1;
+                snake.grow(3);
             }
             _ => {}
         }
@@ -76,7 +77,8 @@ impl Game {
             };
 
             if snake.pos().x == new_pos.x && snake.pos().y == new_pos.y ||
-                strawberries.contains(&new_pos)
+                strawberries.contains(&new_pos) ||
+                snake.tail().contains(&new_pos)
             {
                 continue;
             }

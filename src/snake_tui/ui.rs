@@ -59,8 +59,8 @@ impl Ui {
             }
 
             Self::clear(&mut self.canvas);
-            Self::draw_snake(&mut self.canvas, &self.game);
             Self::draw_strawberries(&mut self.canvas, &self.game);
+            Self::draw_snake(&mut self.canvas, &self.game);
 
             // draw the canvas, dialog window and swap buffers
             self.canvas.draw_into(&mut self.term);

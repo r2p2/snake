@@ -9,25 +9,27 @@ use rustty::ui::{Painter, Dialog, Widget, Alignable, HorizontalAlign, VerticalAl
 const BLOCK: char = '\u{2588}';
 
 pub struct Ui {
+    term: Terminal,
+    canvas: Widget,
     game: Game,
 }
 
 impl Ui {
-    pub fn new(game: Game) -> Ui {
+    pub fn new() -> Ui {
+        let term = Terminal::new().unwrap();
+        let width = term.size().0;
+        let height = term.size().1 - 4;
+        let mut canvas = Widget::new(width, height);
+        canvas.align(&term, HorizontalAlign::Left, VerticalAlign::Top, 0);
         Ui {
-            game: game,
+            term: term,
+            canvas: canvas,
+            game: Game::new(width as u32, height as u32),
         }
     }
 
     pub fn run(&mut self) {
         let step_dur = Duration::from_millis(250);
-
-        // Create our terminal, dialog window and main canvas
-        let mut term = Terminal::new().unwrap();
-        let mut canvas = Widget::new(term.size().0, term.size().1 - 4);
-
-        // Align canvas to top left, and dialog to bottom right
-        canvas.align(&term, HorizontalAlign::Left, VerticalAlign::Top, 0);
 
         let mut timeout = Instant::now() + step_dur;
         'main: loop {
@@ -35,7 +37,7 @@ impl Ui {
 
             if timeout > now { // TODO fix this mess
                 let timeout_diff = timeout - now;
-                let evt = term.get_event(timeout_diff).unwrap();
+                let evt = self.term.get_event(timeout_diff).unwrap();
                 if let Some(Event::Key(ch)) = evt {
                     match ch {
                         'q' => break 'main,
@@ -55,12 +57,12 @@ impl Ui {
                 timeout = Instant::now() + step_dur;
             }
 
-            Self::clear(&mut canvas);
-            Self::draw_snake(&mut canvas, &self.game);
+            Self::clear(&mut self.canvas);
+            Self::draw_snake(&mut self.canvas, &self.game);
 
             // draw the canvas, dialog window and swap buffers
-            canvas.draw_into(&mut term);
-            term.swap_buffers().unwrap();
+            self.canvas.draw_into(&mut self.term);
+            self.term.swap_buffers().unwrap();
         }
     }
 

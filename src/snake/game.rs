@@ -9,7 +9,7 @@ pub struct Game {
 }
 
 impl Game {
-    pub fn new_game(width: u32, height: u32) -> Game {
+    pub fn new(width: u32, height: u32) -> Game {
         Game {
             width: width,
             height: height,

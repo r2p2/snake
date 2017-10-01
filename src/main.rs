@@ -10,5 +10,5 @@ mod snake_tui;
 use snake::game::Game;
 
 fn main() {
-    snake_tui::ui::Ui::new(Game::new_game(50, 30)).run();
+    snake_tui::ui::Ui::new().run();
 }

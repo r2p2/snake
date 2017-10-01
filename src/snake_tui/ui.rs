@@ -7,6 +7,7 @@ use rustty::ui::{Painter, Dialog, Widget, Alignable, HorizontalAlign, VerticalAl
 
 //const BLOCK: char = '\u{25AA}';
 const BLOCK: char = '\u{2588}';
+const STRAWBERRY: char = '\u{1F353}';
 
 pub struct Ui {
     term: Terminal,
@@ -59,6 +60,7 @@ impl Ui {
 
             Self::clear(&mut self.canvas);
             Self::draw_snake(&mut self.canvas, &self.game);
+            Self::draw_strawberries(&mut self.canvas, &self.game);
 
             // draw the canvas, dialog window and swap buffers
             self.canvas.draw_into(&mut self.term);
@@ -92,6 +94,12 @@ impl Ui {
 
         for pos in snake.tail() {
             Self::draw(canvas, pos.x as usize, pos.y as usize, BLOCK);
+        }
+    }
+
+    fn draw_strawberries(canvas: &mut Widget, game: &Game) {
+        for sb in game.strawberries() {
+            Self::draw(canvas, sb.x as usize, sb.y as usize, STRAWBERRY);
         }
     }
 

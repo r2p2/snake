@@ -5,3 +5,4 @@ authors = ["Robert Peters <r2p2.gw@gmail.com>"]
 
 [dependencies]
 rustty = "*"
+rand = "*"

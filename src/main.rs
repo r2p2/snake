@@ -3,6 +3,7 @@
 #![allow(unused_imports)]
 
 extern crate rustty;
+extern crate rand;
 
 mod snake;
 mod snake_tui;

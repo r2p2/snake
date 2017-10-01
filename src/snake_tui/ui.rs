@@ -30,7 +30,7 @@ impl Ui {
     }
 
     pub fn run(&mut self) {
-        let step_dur = Duration::from_millis(250);
+        let step_dur = Duration::from_millis(125);
 
         let mut timeout = Instant::now() + step_dur;
         'main: loop {

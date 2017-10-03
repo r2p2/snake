@@ -5,6 +5,7 @@
 extern crate rustty;
 extern crate rand;
 
+mod log;
 mod snake;
 mod snake_tui;
 
